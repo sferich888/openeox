@@ -13,6 +13,13 @@
           "type": "string",
           "description": "The name of this lifecycle."
         },
+        "meta_tags": {
+          "array": "string",
+          "description": "A list of vendor specific tags/labels applied to the life cycle definition.",
+	  "items": {
+	     "type": "string"
+	  }
+	},
         "lifecycle_phases": {
           "type": "array",
           "items": {
@@ -44,9 +51,12 @@
         },
         "eox_lifecycle_mappings": {
           "type": "array",
+          "description": "A mapping to an eox life cycle standard. The end_date from this product or the parent_referance is used to denote the end date for the mapping phase.",
 	  "items": {
 	     "type": "string",
 	     "enum": [
+		"end_of_maintenance",
+		"EOM",
 	        "end_of_security_support",
 		"EoSSec",
 	        "end_of_sales",
@@ -54,12 +64,16 @@
 		"end_of_life",
 		"EOL",
 		"end_of_technical_support",
-		"EoTS",
-	        "other",
-	        "none"
+		"EoTS"
 	     ]
-	  },
-          "description": "A mapping to an eox life cycle standard. The end_date from this product or the parent_referance is used to denote the end date for the mapping phase."
+	  }
+        },
+        "meta_tags": {
+          "array": "string",
+          "description": "A list of vendor specific tags/labels applied to the life cycle phase definition.",
+	  "items": {
+	     "type": "string"
+	  }
         },
         "start_date": {
           "type": ["string", "null"],
