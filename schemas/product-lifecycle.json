@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "http://localhost/schemas/product-lifecycle.json",
+  "title": "Lifecycle Object Specification",
+  "description": "Defines lifecycles of products, versions, and components nested within products.",
+  "type": "object",
+  "definitions": {
+    "LifeCycle": {
+      "type": "object",
+      "description": "Represents a lifecycle, containing a list of products and defined lifecycle phases.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of this lifecycle."
+        },
+        "lifecycle_phases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "A standardized name for a lifecycle phase."
+          },
+          "uniqueItems": true
+        },
+        "Products": {
+          "type": "array",
+          "items": {
+            "$ref": "product.json#/definitions/Product"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "lifecycle_phases",
+        "Products"
+      ]
+    },
+    "LifecyclePhase": {
+      "type": "object",
+      "description": "Represents a specific phase (or period) of a lifecycle phase within a version, referencing a defined lifecycle phase name.",
+      "properties": {
+        "name_ref": {
+          "type": "string",
+          "description": "References a name from the parent LifeCycle's lifecycle_phases array."
+        },
+        "start_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "The start date of the phase (YYYY-MM-DD), or null if inherited."
+        },
+        "end_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "The end date of the phase (YYYY-MM-DD), or null if inherited or ongoing."
+        },
+        "parent_reference": {
+          "type": ["string", "null"],
+          "description": "The name_ref of a lifecycle phase in the parent version to inherit dates from, or null if defined locally."
+        }
+      },
+      "required": [
+        "name_ref"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "start_date",
+            "end_date"
+          ]
+        },
+        {
+          "properties": {
+            "start_date": { "const": null },
+            "end_date": { "const": null },
+            "parent_reference": { "type": "string" }
+          },
+          "required": [
+            "parent_reference"
+          ]
+        }
+      ]
+    }
+  },
+  "properties": {
+    "life_cycles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/LifeCycle"
+      }
+    }
+  },
+  "required": [
+    "life_cycles"
+  ]
+}

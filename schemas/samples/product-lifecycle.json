@@ -1,0 +1,138 @@
+{
+  "life_cycles": [
+    {
+      "name": "Software Development Lifecycle",
+      "lifecycle_phases": [
+        "Planning",
+        "Design",
+        "Development",
+        "Testing",
+        "Release",
+        "Maintenance"
+      ],
+      "Products": [
+        {
+          "name": "WebApp",
+          "vendor_name": "Tech Solutions Inc.",
+          "versions": [
+            {
+              "name": "1.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "start_date": "2025-06-01", "end_date": "2025-06-15" },
+                { "name_ref": "Design", "start_date": "2025-06-16", "end_date": "2025-07-31" },
+                { "name_ref": "Development", "start_date": "2025-08-01", "end_date": "2025-11-30" },
+                { "name_ref": "Testing", "start_date": "2025-12-01", "end_date": "2025-12-31" },
+                { "name_ref": "Release", "start_date": "2026-01-01", "end_date": "2026-01-15" },
+                { "name_ref": "Maintenance", "start_date": "2026-01-16", "end_date": null }
+              ]
+            },
+            {
+              "name": "2.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "start_date": "2026-05-01", "end_date": "2026-05-15" },
+                { "name_ref": "Design", "start_date": "2026-05-16", "end_date": "2026-07-31" },
+                { "name_ref": "Development", "start_date": "2026-08-01", "end_date": "2026-11-30" },
+                { "name_ref": "Testing", "start_date": "2026-12-01", "end_date": "2026-12-31" },
+                { "name_ref": "Release", "start_date": "2027-01-01", "end_date": "2027-01-15" },
+                { "name_ref": "Maintenance", "start_date": "2027-01-16", "end_date": null }
+              ]
+            }
+          ],
+          "components": [
+            { "name": "Frontend", "product_ref": "WebApp-Frontend" },
+            { "name": "Backend", "product_ref": "WebApp-Backend" }
+          ]
+        },
+        {
+          "name": "MobileApp",
+          "vendor_name": "Innovate Mobile",
+          "versions": [
+            {
+              "name": "1.1",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "start_date": "2025-04-01", "end_date": "2025-04-15" },
+                { "name_ref": "Design", "start_date": "2025-04-16", "end_date": "2025-05-31" },
+                { "name_ref": "Development", "start_date": "2025-06-01", "end_date": "2025-09-30" },
+                { "name_ref": "Testing", "start_date": "2025-10-01", "end_date": "2025-10-31" },
+                { "name_ref": "Release", "start_date": "2025-11-01", "end_date": "2025-11-15" },
+                { "name_ref": "Maintenance", "start_date": "2025-11-16", "end_date": null }
+              ]
+            }
+          ],
+          "components": [
+            { "name": "UI", "product_ref": "MobileApp-UI" },
+            { "name": "DataLayer", "product_ref": "MobileApp-DataLayer" }
+          ]
+        },
+        {
+          "name": "WebApp-Frontend",
+          "vendor_name": "Tech Solutions Inc.",
+          "versions": [
+            {
+              "name": "1.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "parent_reference": "Planning" },
+                { "name_ref": "Design", "parent_reference": "Design" },
+                { "name_ref": "Development", "parent_reference": "Development" },
+                { "name_ref": "Testing", "parent_reference": "Testing" },
+                { "name_ref": "Release", "parent_reference": "Release" },
+                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "WebApp-Backend",
+          "vendor_name": "Tech Solutions Inc.",
+          "versions": [
+            {
+              "name": "1.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "parent_reference": "Planning" },
+                { "name_ref": "Design", "parent_reference": "Design" },
+                { "name_ref": "Development", "parent_reference": "Development" },
+                { "name_ref": "Testing", "parent_reference": "Testing" },
+                { "name_ref": "Release", "parent_reference": "Release" },
+                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MobileApp-UI",
+          "vendor_name": "Innovate Mobile",
+          "versions": [
+            {
+              "name": "1.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "parent_reference": "Planning" },
+                { "name_ref": "Design", "parent_reference": "Design" },
+                { "name_ref": "Development", "parent_reference": "Development" },
+                { "name_ref": "Testing", "parent_reference": "Testing" },
+                { "name_ref": "Release", "parent_reference": "Release" },
+                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MobileApp-DataLayer",
+          "vendor_name": "Innovate Mobile",
+          "versions": [
+            {
+              "name": "1.0",
+              "lifecycle_phases": [
+                { "name_ref": "Planning", "parent_reference": "Planning" },
+                { "name_ref": "Design", "parent_reference": "Design" },
+                { "name_ref": "Development", "parent_reference": "Development" },
+                { "name_ref": "Testing", "parent_reference": "Testing" },
+                { "name_ref": "Release", "parent_reference": "Release" },
+                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
