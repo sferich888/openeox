@@ -18,7 +18,7 @@ class TestJsonSchemaValidationWithRegistry:
     SCHEMAS = list(Path("schemas").glob("*.json"))
     registry = Registry()
     schema_uri_paths = []
-    
+
     @pytest.fixture()
     def setup_registry(self, uri: str = "http://localhost/"):
         # Setup Logic
@@ -26,7 +26,7 @@ class TestJsonSchemaValidationWithRegistry:
 
         for path in self.SCHEMAS:
             resource = Resource(contents=json.loads(path.read_text()), specification=DRAFT7)
-            
+
             logging.debug(f"loading: {uri + str(path)}")
             self.schema_uri_paths.append(uri + str(path))
 
@@ -61,8 +61,8 @@ class TestJsonSchemaValidationWithRegistry:
                 except ValidationError as ve:
                     for er in validator.iter_errors(sample):
                         logging.error(er.message)
-                    assert False
-                assert True
+                    assert False is True
+                assert True is True
                 # with pytest.raises(ValidationError) as excinfo:
                 # assert "ValidationError" not in str(excinfo.value)
 

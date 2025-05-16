@@ -19,7 +19,21 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "The unique name of the product."
+          "description": "The name of the product."
+        },
+        "product_acronyms": {
+          "type": "array",
+          "description": "A list of acronyms that represent the the product.",
+          "items": {
+      	    "type": "string"
+	  }
+    	},
+        "prio_product_names": {
+          "type": "array",
+          "description": "A list of prior names that product has used or gone by.",
+          "items": {
+      	    "type": "string"
+	  }
         },
         "vendor_name": {
           "type": "string",
@@ -54,6 +68,14 @@
           "type": "string",
           "description": "The name or identifier of the version."
         },
+        "release_date": {
+          "format": "date",
+          "description": "The GA (general avalabilty) date of the version (YYYY-MM-DD)."
+        },
+        "weight": {
+          "type": "int",
+          "description": "A weight value for the version allowing for ordering when the version used doesn't follow symantic versioning."
+        },
         "lifecycle_phases": {
           "type": "array",
           "items": {
@@ -63,6 +85,7 @@
       },
       "required": [
         "name",
+	"release_date",
         "lifecycle_phases"
       ]
     },

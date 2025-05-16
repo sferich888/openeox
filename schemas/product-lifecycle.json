@@ -42,6 +42,25 @@
           "type": "string",
           "description": "References a name from the parent LifeCycle's lifecycle_phases array."
         },
+        "eox_lifecycle_mappings": {
+          "type": "array",
+	  "items": {
+	     "type": "string",
+	     "enum": [
+	        "end_of_security_support",
+		"EoSSec",
+	        "end_of_sales",
+		"EOS",
+		"end_of_life",
+		"EOL",
+		"end_of_technical_support",
+		"EoTS",
+	        "other",
+	        "none"
+	     ]
+	  },
+          "description": "A mapping to an eox life cycle standard. The end_date from this product or the parent_referance is used to denote the end date for the mapping phase."
+        },
         "start_date": {
           "type": ["string", "null"],
           "format": "date",
@@ -58,7 +77,8 @@
         }
       },
       "required": [
-        "name_ref"
+        "name_ref",
+        "eox_lifecycle_mappings"
       ],
       "anyOf": [
         {
