@@ -13,33 +13,70 @@
           "type": "string",
           "description": "The name of this lifecycle."
         },
-        "meta_tags": {
-          "array": "string",
-          "description": "A list of vendor specific tags/labels applied to the life cycle definition.",
+        "metadata": {
+          "array": "array",
+          "description": "A list of vendor specific metadata objects to the life cycle definition.",
 	  "items": {
-	     "type": "string"
+	     "type": "object"
 	  }
 	},
+        "lifecycle_scopes": {
+          "type": "array",
+          "description": "A list of lifecycle scopes, and descriptions provided within the lifecycle.",
+	  "items": {
+            "$ref": "#/definitions/LifecycleScopes"
+	  }
+        },
         "lifecycle_phases": {
           "type": "array",
+	  "description": "A list of lifecycle phase provided within the lifecycle.",
           "items": {
-            "type": "string",
-            "description": "A standardized name for a lifecycle phase."
+            "type": "string"
           },
           "uniqueItems": true
         },
-        "Products": {
+        "products": {
           "type": "array",
           "items": {
-            "$ref": "product.json#/definitions/Product"
+            "$ref": "#/definitions/Product"
           }
         }
       },
       "required": [
         "name",
+	"lifecycle_scopes",
         "lifecycle_phases",
-        "Products"
+        "products"
       ]
+    },
+    "LifecycleScopes": {
+      "type": "array",
+      "description": "Defines the specific support scopes provided by the lifecycle.",
+      "items": {
+         "type": "object",
+         "properties": {
+           "name": {
+             "type": "string",
+             "description": "Defines the name of the support scope."
+           },
+           "description": {
+             "type": "string",
+             "description": "A description of what the scope provides."
+           },
+           "metadata": {
+             "array": "array",
+             "description": "A list of vendor specific metadata objects to the product definition.",
+	     "items": {
+	        "type": "object"
+	     }
+	   }
+         },
+         "required": [
+           "name",
+           "description"
+         ]
+       }
+      }
     },
     "LifecyclePhase": {
       "type": "object",
@@ -49,36 +86,39 @@
           "type": "string",
           "description": "References a name from the parent LifeCycle's lifecycle_phases array."
         },
+	"support_scopes_ref": {
+	  "type": "array",
+	  "description": "What offering scope are included as part of this life cycle phase",
+	  "items": {
+	    "type": "string",
+            "description": "References a name from the parent LifeCycle's lifecycle_scopes array."
+	  }
+	},
         "eox_lifecycle_mappings": {
           "type": "array",
           "description": "A mapping to an eox life cycle standard. The end_date from this product or the parent_referance is used to denote the end date for the mapping phase.",
 	  "items": {
 	     "type": "string",
 	     "enum": [
-		"end_of_maintenance",
-		"EOM",
-	        "end_of_security_support",
-		"EoSSec",
-	        "end_of_sales",
-		"EOS",
-		"end_of_life",
-		"EOL",
-		"end_of_technical_support",
-		"EoTS"
+		"end_of_maintenance (EOM)",
+	        "end_of_security_support (EoSSec)",
+	        "end_of_sales (EOS)",
+		"end_of_life (EOL)",
+		"end_of_technical_support (EoTS)"
 	     ]
 	  }
         },
-        "meta_tags": {
-          "array": "string",
-          "description": "A list of vendor specific tags/labels applied to the life cycle phase definition.",
+        "metadata": {
+          "array": "array",
+          "description": "A list of vendor specific metadata objects to the product definition.",
 	  "items": {
-	     "type": "string"
+	     "type": "object"
 	  }
-        },
+	},
         "start_date": {
           "type": ["string", "null"],
           "format": "date",
-          "description": "The start date of the phase (YYYY-MM-DD), or null if inherited."
+          "description": "The start date of the phase (YYYY-MM-DD), or null if inherited or undefined (phase starts at the close of a prior phase)."
         },
         "end_date": {
           "type": ["string", "null"],
@@ -92,6 +132,7 @@
       },
       "required": [
         "name_ref",
+	"support_scopes_ref", 
         "eox_lifecycle_mappings"
       ],
       "anyOf": [
@@ -111,6 +152,114 @@
             "parent_reference"
           ]
         }
+      ]
+    },
+    "Product": {
+      "type": "object",
+      "description": "Represents a product with its name, vendor, versions, and components.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the product."
+        },
+        "product_acronyms": {
+          "type": "array",
+          "description": "A list of acronyms that represent the the product.",
+          "items": {
+      	    "type": "string"
+	  }
+    	},
+        "prior_product_names": {
+          "type": "array",
+          "description": "A list of prior names that product has used or gone by.",
+          "items": {
+      	    "type": "string"
+	  }
+        },
+        "vendor_name": {
+          "type": "string",
+          "description": "The name of the vendor for this product."
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Version"
+          },
+          "description": "List of versions for this product."
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Component"
+          },
+          "description": "List of components associated with this product."
+        },
+        "metadata": {
+          "array": "array",
+          "description": "A list of vendor specific metadata objects to the product definition.",
+	  "items": {
+	     "type": "object"
+	  }
+	}
+      },
+      "required": [
+        "name",
+        "vendor_name",
+        "versions"
+      ]
+    },
+    "Version": {
+      "type": "object",
+      "description": "Represents a specific version of a product, referencing lifecycle phases from the main schema.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name or identifier of the version."
+        },
+        "release_date": {
+          "format": "date",
+          "description": "The GA (general avalabilty) date of the version (YYYY-MM-DD)."
+        },
+        "weight": {
+          "type": "number",
+          "description": "A weight value for the version allowing for ordering when the version used doesn't follow symantic versioning."
+        },
+        "lifecycle_phases": {
+          "type": "array",
+          "items": {
+            "$ref": "product-lifecycle.json#/definitions/LifecyclePhase"
+          }
+        },
+        "metadata": {
+          "array": "array",
+          "description": "A list of vendor specific metadata objects to the product definition.",
+	  "items": {
+	     "type": "object"
+	  }
+	}
+      },
+      "required": [
+        "name",
+	"release_date",
+        "lifecycle_phases"
+      ]
+    },
+    "Component": {
+      "type": "object",
+      "description": "Represents a component, an included product or dependency that included/associated with a product.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The unique name of the component within the product."
+        },
+        "product_ref": {
+          "type": "string",
+          "description": "References the product name or definition that defines this component as a product."
+        }
+      },
+      "required": [
+        "name",
+        "product_ref"
       ]
     }
   },

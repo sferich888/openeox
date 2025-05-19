@@ -1,133 +1,134 @@
 {
   "life_cycles": [
     {
-      "name": "Software Development Lifecycle",
-      "lifecycle_phases": [
-        "Planning",
-        "Design",
-        "Development",
-        "Testing",
-        "Release",
-        "Maintenance"
-      ],
-      "Products": [
+      "name": "Generic Software Lifecycle",
+      "metadata": [
         {
-          "name": "WebApp",
-          "vendor_name": "Tech Solutions Inc.",
+          "vendor_specific_field": "Example Metadata"
+        }
+      ],
+      "lifecycle_scopes": [
+        {
+          "name": "Full Support",
+          "description": "Provides complete support, including bug fixes, security updates, and new features."
+        },
+        {
+          "name": "Maintenance",
+          "description": "Focuses on bug fixes and security updates, but no new features."
+        },
+	{
+	  "name": "Self Support",
+	  "description": "Community and self service support is only provided."
+	}
+      ],
+      "lifecycle_phases": [
+        "Development",
+        "General Availability",
+        "Maintenance",
+        "End of Life"
+      ],
+      "products": [
+        {
+          "name": "Application X",
+          "product_acronyms": ["AppX"],
+	  "prior_product_names": ["Application W"],
+          "vendor_name": "Acme Corp",
           "versions": [
             {
               "name": "1.0",
+              "release_date": "2023-01-15",
+              "weight": 1,
               "lifecycle_phases": [
-                { "name_ref": "Planning", "start_date": "2025-06-01", "end_date": "2025-06-15" },
-                { "name_ref": "Design", "start_date": "2025-06-16", "end_date": "2025-07-31" },
-                { "name_ref": "Development", "start_date": "2025-08-01", "end_date": "2025-11-30" },
-                { "name_ref": "Testing", "start_date": "2025-12-01", "end_date": "2025-12-31" },
-                { "name_ref": "Release", "start_date": "2026-01-01", "end_date": "2026-01-15" },
-                { "name_ref": "Maintenance", "start_date": "2026-01-16", "end_date": null }
+                {
+                  "name_ref": "General Availability",
+		  "support_scopes_ref": ["Full Support"],
+                  "eox_lifecycle_mappings": ["end_of_sales (EOS)"],
+                  "start_date": "2023-01-15",
+                  "end_date": "2025-01-15"
+                },
+                {
+                  "name_ref": "Maintenance",
+		  "support_scopes_ref": ["Maintenance"],
+                  "eox_lifecycle_mappings": ["end_of_maintenance (EOM)"],
+                  "start_date": "2025-01-16",
+                  "end_date": "2027-01-15"
+                },
+		{
+                  "name_ref": "End of Life",
+		  "support_scopes_ref": ["Self Support"],
+                  "eox_lifecycle_mappings": ["end_of_life (EOL)"],
+                  "start_date": "2027-01-16",
+                  "end_date": null
+                }
+              ],
+              "metadata": [
+                {
+                  "release_notes_url": "http://example.com/appx/1.0/notes"
+                }
               ]
             },
             {
               "name": "2.0",
+              "release_date": "2025-01-15",
+              "weight": 2,
               "lifecycle_phases": [
-                { "name_ref": "Planning", "start_date": "2026-05-01", "end_date": "2026-05-15" },
-                { "name_ref": "Design", "start_date": "2026-05-16", "end_date": "2026-07-31" },
-                { "name_ref": "Development", "start_date": "2026-08-01", "end_date": "2026-11-30" },
-                { "name_ref": "Testing", "start_date": "2026-12-01", "end_date": "2026-12-31" },
-                { "name_ref": "Release", "start_date": "2027-01-01", "end_date": "2027-01-15" },
-                { "name_ref": "Maintenance", "start_date": "2027-01-16", "end_date": null }
+                {
+                  "name_ref": "General Availability",
+		  "support_scopes_ref": ["Full Support"],
+                  "eox_lifecycle_mappings": ["end_of_sales (EOS)"],
+                  "start_date": "2025-01-15",
+                  "end_date": "2027-01-15"
+                },
+                {
+                  "name_ref": "Maintenance",
+		  "support_scopes_ref": ["Maintenance"],
+                  "eox_lifecycle_mappings": ["end_of_maintenance (EOM)"],
+                  "start_date": "2027-01-16",
+                  "end_date": "2029-01-15"
+                },
+		{
+                  "name_ref": "End of Life",
+		  "support_scopes_ref": ["Self Support"],
+                  "eox_lifecycle_mappings": ["end_of_life (EOL)"],
+                  "start_date": "2029-01-16",
+                  "end_date": null
+                }
+              ],
+              "metadata": [
+                {
+                  "release_notes_url": "http://example.com/appx/2.0/notes"
+                }
               ]
             }
           ],
           "components": [
-            { "name": "Frontend", "product_ref": "WebApp-Frontend" },
-            { "name": "Backend", "product_ref": "WebApp-Backend" }
-          ]
-        },
-        {
-          "name": "MobileApp",
-          "vendor_name": "Innovate Mobile",
-          "versions": [
             {
-              "name": "1.1",
-              "lifecycle_phases": [
-                { "name_ref": "Planning", "start_date": "2025-04-01", "end_date": "2025-04-15" },
-                { "name_ref": "Design", "start_date": "2025-04-16", "end_date": "2025-05-31" },
-                { "name_ref": "Development", "start_date": "2025-06-01", "end_date": "2025-09-30" },
-                { "name_ref": "Testing", "start_date": "2025-10-01", "end_date": "2025-10-31" },
-                { "name_ref": "Release", "start_date": "2025-11-01", "end_date": "2025-11-15" },
-                { "name_ref": "Maintenance", "start_date": "2025-11-16", "end_date": null }
-              ]
+              "name": "LibraryA",
+              "product_ref": "LibraryA"
             }
           ],
-          "components": [
-            { "name": "UI", "product_ref": "MobileApp-UI" },
-            { "name": "DataLayer", "product_ref": "MobileApp-DataLayer" }
-          ]
-        },
-        {
-          "name": "WebApp-Frontend",
-          "vendor_name": "Tech Solutions Inc.",
-          "versions": [
+          "metadata": [
             {
-              "name": "1.0",
-              "lifecycle_phases": [
-                { "name_ref": "Planning", "parent_reference": "Planning" },
-                { "name_ref": "Design", "parent_reference": "Design" },
-                { "name_ref": "Development", "parent_reference": "Development" },
-                { "name_ref": "Testing", "parent_reference": "Testing" },
-                { "name_ref": "Release", "parent_reference": "Release" },
-                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
-              ]
+              "known_issues_url": "http://example.com/appx/issues"
             }
           ]
         },
-        {
-          "name": "WebApp-Backend",
-          "vendor_name": "Tech Solutions Inc.",
+	{
+          "name": "LibraryA",
+          "vendor_name": "Acme Corp",
           "versions": [
             {
               "name": "1.0",
+              "release_date": "2023-01-15",
+	      "weight": 1,
               "lifecycle_phases": [
-                { "name_ref": "Planning", "parent_reference": "Planning" },
-                { "name_ref": "Design", "parent_reference": "Design" },
-                { "name_ref": "Development", "parent_reference": "Development" },
-                { "name_ref": "Testing", "parent_reference": "Testing" },
-                { "name_ref": "Release", "parent_reference": "Release" },
-                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "MobileApp-UI",
-          "vendor_name": "Innovate Mobile",
-          "versions": [
-            {
-              "name": "1.0",
-              "lifecycle_phases": [
-                { "name_ref": "Planning", "parent_reference": "Planning" },
-                { "name_ref": "Design", "parent_reference": "Design" },
-                { "name_ref": "Development", "parent_reference": "Development" },
-                { "name_ref": "Testing", "parent_reference": "Testing" },
-                { "name_ref": "Release", "parent_reference": "Release" },
-                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "MobileApp-DataLayer",
-          "vendor_name": "Innovate Mobile",
-          "versions": [
-            {
-              "name": "1.0",
-              "lifecycle_phases": [
-                { "name_ref": "Planning", "parent_reference": "Planning" },
-                { "name_ref": "Design", "parent_reference": "Design" },
-                { "name_ref": "Development", "parent_reference": "Development" },
-                { "name_ref": "Testing", "parent_reference": "Testing" },
-                { "name_ref": "Release", "parent_reference": "Release" },
-                { "name_ref": "Maintenance", "parent_reference": "Maintenance" }
+                {
+                  "name_ref": "General Availability",
+		  "support_scopes_ref": ["Full Support"],
+                  "eox_lifecycle_mappings": ["end_of_life (EOL)"],
+                  "start_date": "2023-01-15",
+                  "end_date": "2025-01-15"
+                }
               ]
             }
           ]

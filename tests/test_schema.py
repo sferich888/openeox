@@ -10,7 +10,7 @@ from jsonschema.exceptions import ValidationError
 from pathlib import Path
 from referencing import Registry, Resource
 from referencing.exceptions import NoSuchResource
-from referencing.jsonschema import DRAFT7
+from referencing.jsonschema import Draft202012 # DRAFT7
 from urllib.parse import urlparse
 
 
@@ -25,7 +25,7 @@ class TestJsonSchemaValidationWithRegistry:
         logging.debug("Setting up registry")
 
         for path in self.SCHEMAS:
-            resource = Resource(contents=json.loads(path.read_text()), specification=DRAFT7)
+            resource = Resource(contents=json.loads(path.read_text()), specification=Draft202012)
 
             logging.debug(f"loading: {uri + str(path)}")
             self.schema_uri_paths.append(uri + str(path))
