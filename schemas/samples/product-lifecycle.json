@@ -103,8 +103,7 @@
           ],
           "components": [
             {
-              "name": "LibraryA",
-              "product_ref": "LibraryA"
+              "product_name_ref": "LibraryA", "product_version_ref": "1.0"
             }
           ],
           "metadata": [

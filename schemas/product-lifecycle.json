@@ -50,33 +50,29 @@
       ]
     },
     "LifecycleScopes": {
-      "type": "array",
+      "type": "object",
       "description": "Defines the specific support scopes provided by the lifecycle.",
-      "items": {
-         "type": "object",
-         "properties": {
-           "name": {
-             "type": "string",
-             "description": "Defines the name of the support scope."
-           },
-           "description": {
-             "type": "string",
-             "description": "A description of what the scope provides."
-           },
-           "metadata": {
-             "array": "array",
-             "description": "A list of vendor specific metadata objects to the product definition.",
-	     "items": {
-	        "type": "object"
-	     }
-	   }
-         },
-         "required": [
-           "name",
-           "description"
-         ]
-       }
-      }
+      "properties": {
+	"name": {
+          "type": "string",
+          "description": "Defines the name of the support scope."
+        },
+        "description": {
+          "type": "string",
+          "description": "A description of what the scope provides."
+        },
+        "metadata": {
+          "array": "array",
+          "description": "A list of vendor specific metadata objects to the product definition.",
+	  "items": {
+	     "type": "object"
+	  }
+	}
+      },
+      "required": [
+        "name",
+        "description"
+      ]
     },
     "LifecyclePhase": {
       "type": "object",
@@ -162,6 +158,16 @@
           "type": "string",
           "description": "The name of the product."
         },
+        "type": {
+          "type": "string",
+          "description": "A type defintion for the product, defining a classification for the product.",
+	  "enum": [
+            "software",
+            "software_service",
+	    "hardware",
+	    "service"
+	  ]
+        },
         "product_acronyms": {
           "type": "array",
           "description": "A list of acronyms that represent the the product.",
@@ -222,12 +228,12 @@
         },
         "weight": {
           "type": "number",
-          "description": "A weight value for the version allowing for ordering when the version used doesn't follow symantic versioning."
+          "description": "A weight value for the version allowing for ordering when/if the version used doesn't follow symantic versioning."
         },
         "lifecycle_phases": {
           "type": "array",
           "items": {
-            "$ref": "product-lifecycle.json#/definitions/LifecyclePhase"
+            "$ref": "#/definitions/LifecyclePhase"
           }
         },
         "metadata": {
@@ -248,18 +254,18 @@
       "type": "object",
       "description": "Represents a component, an included product or dependency that included/associated with a product.",
       "properties": {
-        "name": {
+        "product_name_ref": {
           "type": "string",
-          "description": "The unique name of the component within the product."
+          "description": "References the product definition that defines this component as a product."
         },
-        "product_ref": {
+        "product_version_ref": {
           "type": "string",
-          "description": "References the product name or definition that defines this component as a product."
+          "description": "References the product version definition that defines what version of a product is associated with the component."
         }
       },
       "required": [
-        "name",
-        "product_ref"
+        "product_name_ref",
+        "product_version_ref"
       ]
     }
   },
