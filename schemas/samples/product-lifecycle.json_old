@@ -117,19 +117,19 @@
                   "lifecycle_name_ref": "General Availability",
                   "start_date": "2023-01-15",
                   "end_date": "2025-01-15",
-                  "parent_reference": false
+		  "parent_reference": false
                 },
                 {
                   "lifecycle_name_ref": "Maintenance",
                   "start_date": "2025-01-16",
                   "end_date": "2027-01-15",
-                  "parent_reference": false
+		  "parent_reference": false
                 },
                 {
                   "lifecycle_name_ref": "End of Life",
                   "start_date": "2027-01-16",
                   "end_date": null,
-                  "parent_reference": false
+		  "parent_reference": false
                 }
               ],
               "metadata": [
@@ -147,19 +147,19 @@
                   "lifecycle_name_ref": "General Availability",
                   "start_date": "2025-01-15",
                   "end_date": "2027-01-15",
-                  "parent_reference": false
+		  "parent_reference": false
                 },
                 {
                   "lifecycle_name_ref": "Maintenance",
                   "start_date": "2027-01-16",
                   "end_date": "2029-01-15",
-                  "parent_reference": false
+		  "parent_reference": false
                 },
                 {
                   "lifecycle_name_ref": "End of Life",
                   "start_date": "2029-01-16",
                   "end_date": null,
-                  "parent_reference": false
+		  "parent_reference": false
                 }
               ],
               "metadata": [
@@ -172,7 +172,7 @@
         },
         {
           "product_name_ref": "LibraryA",
-          "versions": [
+	  "versions": [
             {
               "name": "1.0",
               "release_date": "2023-01-15",
@@ -182,19 +182,19 @@
                   "lifecycle_name_ref": "General Availability",
                   "start_date": null,
                   "end_date": null,
-                  "parent_reference": true
+		  "parent_reference": true
                 },
                 {
                   "lifecycle_name_ref": "Maintenance",
                   "start_date": null,
                   "end_date": null,
-                  "parent_reference": true
+		  "parent_reference": true
                 },
                 {
                   "lifecycle_name_ref": "End of Life",
                   "start_date": null,
                   "end_date": null,
-                  "parent_reference": true
+		  "parent_reference": true
                 }
               ],
               "metadata": [
@@ -203,8 +203,8 @@
                 }
               ]
             }
-          ]
-        }
+	  ]
+         }
       ]
     }
   ]

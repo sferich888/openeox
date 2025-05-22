@@ -55,6 +55,7 @@ class TestJsonSchemaValidationWithRegistry:
                 # logging.debug(self.registry.contents(uri))
 
                 sample = json.loads(sample_file_path.read_text())
+                # logging.debug(sample)
                 try:
                     validate(sample, self.registry.contents(uri))
                     assert True
